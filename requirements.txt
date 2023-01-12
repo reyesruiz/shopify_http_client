@@ -1,0 +1,2 @@
+requests
+com-digitalruiz-my-logger
