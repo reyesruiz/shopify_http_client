@@ -17,7 +17,7 @@ def __get_shopify_configs():
     Getting configs from ~/.Shopify-Config.json
     '''
     home = str(Path.home())
-    file_name = home + '.Shopify-Config.json'
+    file_name = home + '/.Shopify-Config.json'
     with open(file_name, "r", encoding='utf-8') as json_file:
         shopify_config = json.load(json_file)
     return shopify_config
