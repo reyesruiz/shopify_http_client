@@ -131,6 +131,14 @@ def set_shopify_admin_url():
             shopify_admin_api_version])
     return shopify_admin_api_url
 
+def get_shopify_default_location():
+    '''
+    Getting default location id from config to process inventory
+    '''
+    shopify_config = __get_shopify_configs()
+    shopify_default_location = shopify_config['deafult_location']
+    return shopify_default_location
+
 def __get_paginated_url(response):
     for link in response.headers['Link'].split(','):
         if 'next' in link.split(';')[1]:
