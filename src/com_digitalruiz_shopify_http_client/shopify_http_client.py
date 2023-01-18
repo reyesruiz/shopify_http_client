@@ -3,23 +3,25 @@ HTTPS client to connect to shopify:
 Copyright 2023 Reyes Ruiz
 '''
 
-from pathlib import Path
 import sys
+import os
 import time
-import json
 import requests
+from dotenv import load_dotenv, find_dotenv
 from com_digitalruiz_my_logger import my_logger
 
 LOGGER = my_logger.set_logger(module_name=sys.argv[0], loglevel='INFO')
 
 def __get_shopify_configs():
     '''
-    Getting configs from ~/.Shopify-Config.json
+    Getting configs from Enviroment
     '''
-    home = str(Path.home())
-    file_name = home + '/.Shopify-Config.json'
-    with open(file_name, "r", encoding='utf-8') as json_file:
-        shopify_config = json.load(json_file)
+    load_dotenv(find_dotenv())
+    shopify_config = {}
+    shopify_config['shopify_store_name'] = os.environ['shopify_store_name']
+    shopify_config['shopify_admin_api_version'] = os.environ['shopify_admin_api_version']
+    shopify_config['shopify_access_token'] = os.environ['shopify_access_token']
+    shopify_config['shopify_deafult_location'] = os.environ['shopify_deafult_location']
     return shopify_config
 
 def __get_shopify_token():
