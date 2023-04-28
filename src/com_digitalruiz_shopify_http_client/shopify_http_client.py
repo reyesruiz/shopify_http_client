@@ -143,6 +143,15 @@ def get_shopify_default_location():
     shopify_default_location = shopify_config['shopify_deafult_location']
     return shopify_default_location
 
+def set_shopify_admin_web_url():
+    '''
+    Setting the base for the admin url
+    '''
+    shopify_config = __get_shopify_configs()
+    shopify_store_name = shopify_config['shopify_store_name']
+    shopify_base_url = "https://admin.shopify.com/store/" + shopify_store_name + "/"
+    return shopify_base_url
+
 def __get_paginated_url(response):
     for link in response.headers['Link'].split(','):
         if 'next' in link.split(';')[1]:
