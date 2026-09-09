@@ -110,8 +110,7 @@ def post(url, data):
         time.sleep(60)
         return post(url, data)
     if response.status_code in (200, 201):
-        content = response.text
-        return content
+        return response.json()
     if response.status_code == 429:
         LOGGER.error("Too many requests, sleeping... for 2 minutes")
         LOGGER.error(response.headers)
