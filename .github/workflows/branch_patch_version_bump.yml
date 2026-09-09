@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.AUTO_COMMIT }}
           ref: ${{ github.event.inputs.git_tag }}
@@ -36,7 +36,7 @@ jobs:
         run: sed -i -E  "s/version = \"${{ steps.version.outputs.PACKAGE_VERSION }}\"/version = \"${{ steps.new_version.outputs.NEW_PACKAGE_VERSION }}\"/" pyproject.toml
 
       - name: Push new files back to branch.
-        uses: stefanzweifel/git-auto-commit-action@v5.0.0
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "#Patch version bump, #skip-ci"
           status_options: '--untracked-files=no'
